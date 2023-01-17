@@ -36,24 +36,29 @@ else {
     <main class="container">
         <h1>Liste des mémo</h1>
         <section class="row">
-            <?php foreach($memos as $memo) { 
-                // Transformons notre $memo en tableau associatif - pour l'instant c'est un objet, mais on ne sait pas les utiliser ;)
-                $memo = (array)$memo;
-                ?>
-                <article class="col-md-6 col-lg-4 mt-3">
-                    <div class="card">
-                        <div class="card-header">
-                            <?= $memo["date"]; ?>
+            <?php 
+            // Vérifions que des mémos ont été enregistrés avant de les afficher
+            if(count($memos) > 0) {
+
+                foreach($memos as $memo) { 
+                    // Transformons notre $memo en tableau associatif - pour l'instant c'est un objet, mais on ne sait pas les utiliser ;)
+                    $memo = (array)$memo;
+                    ?>
+                    <article class="col-md-6 col-lg-4 mt-3">
+                        <div class="card">
+                            <div class="card-header">
+                                <?= $memo["date"]; ?>
+                            </div>
+                            <div class="card-body">
+                                <?= $memo["text"]; ?>
+                            </div>
+                            <div class="card-footer">
+                                <?= $memo["priority"]; ?>
+                            </div>
                         </div>
-                        <div class="card-body">
-                            <?= $memo["text"]; ?>
-                        </div>
-                        <div class="card-footer">
-                            <?= $memo["priority"]; ?>
-                        </div>
-                    </div>
-                </article>
-            <?php } ?>
+                    </article>
+                <?php } 
+            } ?>
         </section>
     </main>
 </body>
